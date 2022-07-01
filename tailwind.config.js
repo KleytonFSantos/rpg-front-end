@@ -6,6 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'tower-bg':"url('/src/assets/103.jpeg')",
+        'tower-login':"url('/src/assets/101.jpg')",
+        'tower-signup':"url('/src/assets/102.jpg')",
+        'tower-forgot-pass':"url('/src/assets/105.jpg')",
+      },
       colors: {
         'input-black':'#1f2223',
         'input-focus':'#414646',

@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
+import ForgotPass from "./pages/ForgotPass/ForgotPass";
 
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
@@ -13,6 +14,7 @@ const AppRoutes: React.FC = (): JSX.Element => {
                     <Route path="/" element={<Login />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/forgot-password" element={<ForgotPass />} />
                 </Routes>
             </Fragment>
     );
