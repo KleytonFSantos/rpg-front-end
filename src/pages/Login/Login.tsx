@@ -2,8 +2,11 @@ import Input from "../../components/Input";
 import { User, Lock } from "phosphor-react";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <>
       <div className="w-full font-nunito h-screen flex items-center justify-center bg-tower-bg bg-no-repeat bg-cover">
@@ -14,7 +17,7 @@ function Login() {
           <div className="mt-8">
             <form action="#" autoComplete="off">
               <div className="flex flex-col mb-2">
-                <Input 
+                <Input
                 className="flex relative font-nunito"
                 icon={<User />} 
                 placeholder="Your Login" 

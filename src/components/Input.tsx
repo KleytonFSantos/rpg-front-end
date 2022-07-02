@@ -13,6 +13,7 @@ function Input({ icon, placeholder, className }: InputProps) {
         {icon}
       </span>
       <input
+
         type="text"
         id="sign-in-email"
         className="rounded-r-lg flex-1 appearance-none border border-input-focus w-full py-2 px-4 bg-input-black text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-1 focus:ring-light-blue focus:border-transparent"

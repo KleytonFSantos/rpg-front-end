@@ -1,9 +1,33 @@
 import { User, Lock, Envelope, Password } from "phosphor-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
+import * as yup from "yup";
 
 function Singup() {
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  let schema = yup.object().shape({
+    userName: yup.string().required("User name is required"),
+    email: yup.string().email().required("Email is required"),
+    password: yup.string().required("Password is required").min(8, "Password must be at least 8 characters"),
+    confirmPassword: yup.string().required("Confirm password is required"),
+  });
+
+  const validated = schema.isValid({
+    userName,
+    email,
+    password,
+    confirmPassword,
+  });
+
+  
+
+  
   return (
     <div className="w-full font-nunito h-screen flex items-center justify-center bg-tower-signup bg-no-repeat bg-cover">
       <div className="flex flex-col w-full bg-opacity-80 max-w-md px-4 py-8 bg-my-black rounded-lg shadow sm:px-6 md:px-8 lg:px-10">

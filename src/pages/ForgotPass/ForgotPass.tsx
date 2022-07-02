@@ -3,8 +3,13 @@ import Input from '../../components/Input';
 import { Envelope } from 'phosphor-react';
 import Button from '../../components/Button';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function ForgotPass() {
+
+    const [forgottenPass, setForgottenPass] = useState('');
+
+    console.log(forgottenPass)
   return (
     <div className="w-full h-screen font-nunito justify-center bg-input-black overflow-hidden">  
        <Header />
@@ -14,6 +19,8 @@ function ForgotPass() {
                 <span className='text-gray-100 text-3xl flex items-center'>Forgot Password</span>
                 <span className='text-gray-300 text-lg flex items-center text-center mt-8'>Enter the email you signed up with below and we will send you a link to reset your password.</span>               
                 <Input
+                value={forgottenPass}
+                changingValue={(e) => setForgottenPass(e.currentTarget.value)}
                 className="mt-8 flex relative font-nunito w-[450px] h-12" 
                 placeholder='You Email'
                 icon={<Envelope />}
