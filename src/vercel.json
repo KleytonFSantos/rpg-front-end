@@ -1,0 +1,8 @@
+{
+    "rewrites":  [
+      {"src": "/ForgotPass(.*)", "destination": "/forgot-password", "status": 200},
+      {"src": "/Login(.*)", "destination": "/login", "status": 200},
+      {"src": "/Signup(.*)", "destination": "/signup", "status": 200}
+    ]
+  }
+  
