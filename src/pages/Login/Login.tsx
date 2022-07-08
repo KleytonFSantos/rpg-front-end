@@ -5,19 +5,41 @@ import { Link } from "react-router-dom";
 import { FormikProvider, useFormik } from "formik";
 import { loginSchema } from "../../schema/login";
 import ErrorMessage from "../../components/ErrorMessage";
+import { createSession } from "../../services/api";
 
 function Login() {
+  
+  const login = async () => {
+    try {
+      const user = loginForm.values
+      const response = await createSession(user)
+      console.log(response)
+      if(response.data.token){
+        localStorage.setItem('token', response.data.token)
+      }
+      console.log(response.data.token);
+      if (response.data.token) {
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const loginForm = useFormik({
     initialValues: {
-      email: "",
+      username: "",
       password: "",
+      token: "",
+      user: '',
     },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: () => {
+      login();
+      console.log(loginForm.values);
     }
   });
+  
   return (
     <>
       <div className="w-full font-nunito h-screen flex items-center justify-center bg-tower-bg bg-no-repeat bg-cover">
@@ -28,8 +50,8 @@ function Login() {
           <div className="mt-8">
             <FormikProvider value={loginForm}>
               <form onSubmit={loginForm.handleSubmit}>
-              { loginForm.errors.email && loginForm.touched.email ?(
-                <ErrorMessage textMessage={loginForm.errors.email} />
+              { loginForm.errors.username && loginForm.touched.username ?(
+                <ErrorMessage textMessage={loginForm.errors.username} />
                   ) 
                   : loginForm.errors.password && loginForm.touched.password ? (
                       <ErrorMessage textMessage={loginForm.errors.password} />
@@ -37,9 +59,9 @@ function Login() {
               }
                 <div className="flex flex-col mb-2">
                   <Input
-                  name="email"
+                  name="username"
                   onChanges={loginForm.handleChange}
-                  values={loginForm.values.email}
+                  values={loginForm.values.username}
                   inputType="text"
                   className="flex relative font-nunito"
                   icon={<User />} 
