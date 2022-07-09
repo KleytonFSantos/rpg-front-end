@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 export type Session = {
-    token: string;
+    token?: string;
     username: string;
     password: string;
 }

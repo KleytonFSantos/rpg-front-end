@@ -5,26 +5,11 @@ import { Link } from "react-router-dom";
 import { FormikProvider, useFormik } from "formik";
 import { loginSchema } from "../../schema/login";
 import ErrorMessage from "../../components/ErrorMessage";
-import { createSession } from "../../services/api";
+import useAuth from "../../Hooks/useAuth";
 
 function Login() {
-  
-  const login = async () => {
-    try {
-      const user = loginForm.values
-      const response = await createSession(user)
-      console.log(response)
-      if(response.data.token){
-        localStorage.setItem('token', response.data.token)
-      }
-      console.log(response.data.token);
-      if (response.data.token) {
-        window.location.href = "/";
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
+  const { handleLogin } = useAuth();
 
   const loginForm = useFormik({
     initialValues: {
@@ -35,8 +20,7 @@ function Login() {
     },
     validationSchema: loginSchema,
     onSubmit: () => {
-      login();
-      console.log(loginForm.values);
+      handleLogin({ username: loginForm.values.username, password: loginForm.values.password });
     }
   });
   
